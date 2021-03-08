@@ -1,8 +1,8 @@
-export const isAuthentification = () => {
-    const jwt =  localStorage.getItem('jwt_info');
+export const isAuthenticated = () => {
+    const token =  localStorage.getItem('token');
 
-    if(jwt){
-        return JSON.parse(jwt)
+    if(token){
+        return token
     }
 
     return false

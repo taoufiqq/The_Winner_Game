@@ -13,23 +13,27 @@ function EditQuestion() {
 
   const history = useHistory();
 
-	const [question, setQuestion] = useState();
-  const [correctAnswer, setCorrectAnswer] = useState();
-  const [incorrectAnswers, setIncorrectAnswers] = useState();
-
-  const [categories, setNameCategories] = useState(null);
+  const [question, setQuestion] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [incorrectAnswer1, setIncorrectAnswer1] = useState("");
+  const [incorrectAnswer2, setIncorrectAnswer2] = useState("");
+  const [incorrectAnswer3, setIncorrectAnswer3] = useState("");
+  const [nameCategory, setNameCategory] = useState();
 
   const idQts=localStorage.getItem('idQuestion');
 
 // ---------------------get question to update-----------------------------
    useEffect(()=>{
 
-    axios.get(`http://localhost:3030/question/${idQts}`)
+    axios.get(`http://localhost:3030/question/update/${idQts}`)
     .then(function (response) {
      
       setQuestion(response.data.question)
       setCorrectAnswer(response.data.correctAnswer)
-      setIncorrectAnswers(response.data.incorrectAnswers)
+      setIncorrectAnswer1(response.data.incorrectAnswer1)
+      setIncorrectAnswer2(response.data.incorrectAnswer2)
+      setIncorrectAnswer3(response.data.incorrectAnswer3)
+      setIncorrectAnswer1(response.data.incorrectAnswer1)
 
     
     }).catch(function (err) {
@@ -41,7 +45,7 @@ function EditQuestion() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-    const data = {question,correctAnswer,incorrectAnswers};
+    const data = {question,correctAnswer,incorrectAnswer1,incorrectAnswer2,incorrectAnswer3};
 
     axios.put(`http://localhost:3030/question/update/${idQts}`,data)
       .then(res => {
@@ -61,7 +65,7 @@ useEffect(()=>{
   axios.get(`http://localhost:3030/category`)
     .then(function (response) {
         
-      setNameCategories(response.data)
+      setNameCategory(response.data)
     
     }).catch(function (err) {
       console.log(err);
@@ -102,7 +106,7 @@ useEffect(()=>{
     
         <h1>Edit Question</h1>
   
-          <input className="floatlabel" id="name" type="text" 
+        <input className="floatlabel" id="name" type="text" 
           placeholder="Question" required 
           value={question}
           onChange={e => setQuestion(e.target.value)} />
@@ -111,18 +115,26 @@ useEffect(()=>{
             value={correctAnswer}
             onChange={e => setCorrectAnswer(e.target.value)} />
        
-          <input className="floatlabel" id="name" type="text" placeholder="Incorrect Answer" required 
-            value={incorrectAnswers}
-            onChange={e => setIncorrectAnswers(e.target.value)} />
+          <input className="floatlabel" id="name" type="text" placeholder="Incorrect Answer 1" required 
+            value={incorrectAnswer1}
+            onChange={e => setIncorrectAnswer1(e.target.value)} />
+
+             <input className="floatlabel" id="name" type="text" placeholder="Incorrect Answer 2" required 
+            value={incorrectAnswer2}
+            onChange={e => setIncorrectAnswer2(e.target.value)} />
+
+             <input className="floatlabel" id="name" type="text" placeholder="Incorrect Answer 3" required 
+            value={incorrectAnswer3}
+            onChange={e => setIncorrectAnswer3(e.target.value)} />
        
     
        <select id="select">
-             {categories && categories.map(item =>(
+             {nameCategory && nameCategory.map(item =>(
                 <option  value={item._id}
-                onChange={e => setNameCategories(e.target.value)}>{item.nameCategory}</option>
+                onChange={e => setNameCategory(e.target.value)}>{item.nameCategory}</option>
               ))}          
           </select>  
-        <button type="submit" id="AddCatg">Add Question</button>
+        <button type="submit" id="AddCatg">Edit Question</button>
         
       </form>
 </div>

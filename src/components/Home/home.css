@@ -31,7 +31,9 @@ h2 {
     text-align: center;
     font-size: 60px;
     font-weight: 600;
-    margin-top: 5%;
+
+    padding-bottom: 7%;
+
 }
 h3 {
     color: #fff;
@@ -40,9 +42,58 @@ h3 {
     font-weight: 600;
     margin-top: 5%;
 }
+.questions{
+    background: linear-gradient(to bottom, rgb(135 187 170 / 0%) 0%, rgb(95 195 163) 100%);
+}
+.lifeline-conatiner {
+    display: flex;
+    justify-content: space-between;
+    
+ 
 
-
-
+}
+.p-left{
+    color: #fff;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+.p-right{
+    color: #fff;
+    margin-right: 10%;
+    margin-top: 3%;
+}
+.lifeline {
+    position: relative;
+    top: -4px;
+  
+}
+.counte-question{
+    text-align: center;
+}
+.left{
+    font-size: 30px;
+    color: white;
+}
+h5{
+    text-align: center;
+    font-size: 33px;
+    font-weight: 600;
+    color: greenyellow;
+    margin-top: 3%;
+}
+.options-conatiner{
+    display: flex;
+    margin-top: 3%;
+ 
+}
+.option{
+    flex: auto;
+    border: 1px solid #212529;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 3;
+    background: lightgrey;
+}
 .play-button {
     background: linear-gradient(to bottom, rgb(255 118 0) 0%, rgb(0 0 0 / 0%) 100%);
     border: 0;

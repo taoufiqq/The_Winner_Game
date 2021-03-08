@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -9,6 +9,7 @@ import './home.css';
 const Quiz = () => {
 
 
+  const history = useHistory();
   const [categories , setCategories] = useState(null);
 
   useEffect(()=>{
@@ -25,14 +26,28 @@ const Quiz = () => {
     
     })
 
+let handleClick =(id)=>{
+
+  localStorage.setItem('idCategory',id);
+
+  history.push('/play');
 
 
 
+
+}
+
+    const logOut =()=>{
+
+      localStorage.removeItem('token')
+         history.push('/');
+      }
+      
 
   return(
     <div id="home">
        <form>
-            <Link to="/home" className="play-button" style={{marginLeft: '1600px',marginTop: '22px'}}>log out</Link>
+       <Link  onClick={logOut} className="play-button" style={{marginLeft: '1600px',marginTop: '22px'}}>log out</Link>
         </form>           
    
             <section id="section">
@@ -48,7 +63,9 @@ const Quiz = () => {
                  
                     { categories && categories.map(item =>(
                       <div className="card-body">
-                      <Link to="" className="play-button">{item.nameCategory}</Link>
+                                        
+                        <Link className="play-button" onClick={()=>{ handleClick(item._id)}}>{item.nameCategory}</Link>
+                      {/* <Link to="/play" className="play-button">{item.nameCategory}</Link> */}
                       </div>
                         ))} 
               

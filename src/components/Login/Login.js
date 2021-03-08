@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import axios from 'axios';
 import './login.css';
+import toastr from 'toastr';
+import "toastr/build/toastr.css";
 
-
-const Login = (props) => {
-
+const Login = () => {
+   const history = useHistory();
 	const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
 
@@ -16,24 +17,19 @@ const Login = (props) => {
 
 	axios.post(`http://localhost:3030/user/login`, user)
 		.then(res => {
-		    if(res.error){
-				return false
-				
+			console.log(res)
+			if(!res.data.message){ 
+			 let token= res.data.token;
+			 localStorage.setItem("token", token);
+			 history.push('/quiz');
+			 toastr.info('User is authenticated SuccessFully', `Welcome ${user.userName}`, {
+				positionClass: "toast-top-left",
+			})
+
 			}else{
-				// console.log(res.data.token);
-
-				let token = res.data.token;
-		
-				localStorage.setItem("token", token);
-				 console.log(res.data);
-
-				 if(!token) {
-					 alert('User name or password invalid !!!!! try again')
-					return <Login/>
-				  }else{
-					props.history.push('/quiz')
-				  }
-	            
+				toastr.warning(res.error, 'Username Or password invalid !!!! Please Check form !', {
+                    positionClass: "toast-top-left",
+                })
 			}
 		 
 		})

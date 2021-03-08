@@ -111,6 +111,7 @@ form a {
 a:hover {
 	text-decoration: none;
 	color: black;
+	font-size: 13px;
 }
 
  .bg-bubbles {

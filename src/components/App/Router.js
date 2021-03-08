@@ -14,6 +14,8 @@ import EditCategory from '../Dashboard/EditCategory';
 import AddQuestion from '../Dashboard/AddQuestion';
 import EditQuestion from '../Dashboard/EditQuestion';
 import AdminLogin from '../Dashboard/AdminLogin';
+import Play from '../Home/Play';
+import PrivateRoute from '../auth/PrivateRoute';
 function Routes() {
 
   return (
@@ -22,17 +24,18 @@ function Routes() {
 
 <BrowserRouter>
       <Switch> 
-          <Route  path="/home" exact component={Home}/> 
-          <Route  path="/quiz" exact component={Quiz}/> 
+          <Route  path="/" exact component={Home}/> 
+          <PrivateRoute  path="/quiz" exact component={Quiz}/> 
           <Route  path="/login" axact component={Login}/>
           <Route  path="/register" axact component={Register}/>
-          <Route  path="/categories" exact component={Categories}/>
-          <Route  path="/questions" exact component={Question}/>
-          <Route  path="/addCategory" exact component={AddCategory}/>
-          <Route  path="/editCategory" exact component={EditCategory}/>
-          <Route  path="/addQuestion" exact component={AddQuestion}/>
-          <Route  path="/editQuestion" exact component={EditQuestion}/>
+          <PrivateRoute  path="/categories" exact component={Categories}/>
+          <PrivateRoute  path="/questions" exact component={Question}/>
+          <PrivateRoute  path="/addCategory" exact component={AddCategory}/>
+          <PrivateRoute  path="/editCategory" exact component={EditCategory}/>
+          <PrivateRoute  path="/addQuestion" exact component={AddQuestion}/>
+          <PrivateRoute  path="/editQuestion" exact component={EditQuestion}/>
           <Route  path="/admin" exact component={AdminLogin}/>
+          <Route  path="/play" exact component={Play}/>
       </Switch>
 </BrowserRouter>
 

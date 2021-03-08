@@ -56,7 +56,7 @@ function AddQuestion() {
         console.log(err);
     });
     
-    },[])
+    })
   return(
     
     <div className="container-xl">

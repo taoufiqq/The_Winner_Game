@@ -4,15 +4,26 @@ const router = express.Router();
 
 // ______________________show all question ______________________
 
-
 router.get('/', (req, res) => {
   Question.find()
     .populate('Category')
     .then((question) => res.json(question))
     .catch((err) => res.status(400).json("Error :" + err));
 });
+// ______________________show random Question by category  _____________________
 
+router.get('/:idCategory', (req, res) => {
+  Question.find({nameCategory:req.params.idCategory})
+  .then(question => {
+    let randomQuestion = question[Math.floor(Math.random() * question.length)];
+      res.send(randomQuestion);
+  }).catch(err => {
+      res.status(500).send({
+          message: err.message || "Some error occurred while retrieving question."
+      });
+  });
 
+});
 
 // ______________________get question by id__________________
 router.get('/:id', (req, res) => {
@@ -48,13 +59,13 @@ router.route("/add").post((req, res) => {
 
 //__________________ get question's category to updated__________________ 
 
-// router.get('/update/:id', (req,res) =>{
+router.get('/update/:id', (req,res) =>{
 
-//   Question.findById(req.params.id)
-//   .populate('category')
-//   .then((question) => res.json(question))
-//   .catch((err) => res.status(400).json("Error :" + err));
-// });
+  Question.findById(req.params.id)
+  .populate('nameCategory')
+  .then((question) => res.json(question))
+  .catch((err) => res.status(400).json("Error :" + err));
+});
 //______________________updating question______________________
 router.route("/update/:id").put((req, res) => {
 

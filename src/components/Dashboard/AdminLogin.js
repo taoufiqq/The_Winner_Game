@@ -35,7 +35,7 @@ const Login = (props) => {
   return(
 <div className="wrapper">
 	<div className="container">
-		<h1>Admin Login</h1>
+		<h1> Admin Area</h1>
 		
 		<form className="form"  onSubmit={handleSubmit}>
 
