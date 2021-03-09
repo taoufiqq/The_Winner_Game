@@ -26,10 +26,8 @@ router.get('/:idCategory', (req, res) => {
 });
 
 // ______________________get question by id__________________
-router.get('/:id', (req, res) => {
-  Question.findById({
-      _id: `${req.params.id}`
-    })
+router.get('/oneQuestion/:id', (req, res) => {
+  Question.findById(req.params.id)
     .then((question) => res.json(question))
     .catch((err) => res.status(400).json("Error :" + err));
 });

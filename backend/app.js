@@ -38,10 +38,12 @@ mongoose.connect('mongodb://localhost:27017/theWinner' , {
 const categoryRoute = require('./routes/category');
 const questionRoute = require('./routes/question');
 const usersRoute = require('./routes/users');
+const adminsRoute = require('./routes/admin');
 
 app.use('/category' ,categoryRoute);
 app.use('/question' ,questionRoute);
 app.use('/user' ,usersRoute);
+app.use('/admin' ,adminsRoute);
 
 
 
