@@ -1,0 +1,29 @@
+h2 {
+    color: #fff;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 600;
+
+    padding-bottom: 3%;
+
+}
+.play-button {
+    background: linear-gradient(to bottom, rgb(255 118 0) 0%, rgb(0 0 0 / 0%) 100%);
+    border: 0;
+    padding: 10px 15px;
+    border-radius: 3px;
+    width: 221px;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+    margin-left: 31%;
+    /* margin-top: 25%; */
+    color: white;
+    position: absolute;
+    text-align: center;
+
+}
+.play-button:hover{
+    text-decoration: none;
+    color: lightgreen;
+}

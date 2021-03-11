@@ -7,7 +7,7 @@ const Play = () => {
     const [question , setQuestion] = useState(null);
     const [questionNum , setQuestionNum] = useState(1);
     const [score , setScore] = useState(0);
-    const [numTry , setNumTry] = useState(0);
+    const [numTry , setNumTry] = useState(3);
     const [numFalseQuestion , setNumFalseQuestion ] = useState(0);
     // const [questionEnd , setQuestionEnd] = useState(false);
     const history = useHistory();
@@ -18,7 +18,7 @@ const Play = () => {
         let questionCount = questionNum
         let idCategory = localStorage.getItem('idCategory');
 
-        if (numTry < 3) {
+        if (numTry >= 1) {
             
             // check if the anwser is correct
             
@@ -37,7 +37,7 @@ const Play = () => {
                     
                 }
 
-                if (questionCount < 11) {
+                if (questionCount <= 10) {
                     // get question from db 
 
                     axios.get(`http://localhost:3030/question/${idCategory}`)
@@ -55,14 +55,15 @@ const Play = () => {
                     if (numFalseQuestion >= 3) {
                         
                         let oldNumTry = numTry;
-                        setNumTry(oldNumTry + 1)
+                        setNumTry(oldNumTry - 1)
                         setNumFalseQuestion(0);
                         setQuestionNum(0)
+                        setScore(0);
                         
                     }else{
-                      
-                        history.push('/winner');
                         localStorage.setItem('score',score);
+                        history.push('/winner');
+                        
                     }
                    
                 }
@@ -73,7 +74,8 @@ const Play = () => {
 
             
         } else {
-            history.push('/winner');
+            localStorage.setItem('score',score);
+            history.push('/lose');
           
             
         }
@@ -81,17 +83,17 @@ const Play = () => {
 
     
         
-        console.log('--------------------------------------------------------');
+        // console.log('--------------------------------------------------------');
 
-        console.log(score);
+        // console.log(score);
 
-        console.log('--------------------------------------------------------');
+        // console.log('--------------------------------------------------------');
 
-        console.log(numFalseQuestion);
-        console.log('--------------------------------------------------------');
+        // console.log(numFalseQuestion);
+        // console.log('--------------------------------------------------------');
 
-        console.log(numTry);
-        console.log('--------------------------------------------------------');
+        // console.log(numTry);
+        // console.log('--------------------------------------------------------');
 
     }
 
@@ -124,7 +126,9 @@ const Play = () => {
                 localStorage.removeItem('token')
                    history.push('/');
                 }
-                
+             const handleFiftyFifty =()=>{
+                 alert("Fifty Fifty Clicked !!!!")
+             }   
 
         return(
             <div id="home">
@@ -140,17 +144,19 @@ const Play = () => {
                          <div className="questions">
                          <div className="lifeline-conatiner">
                          <p className="p-left">
-                             <span className="mdi mdi-set-center mdi-24px lifeline-icon"></span><span className="lifeline">2</span>
+                             {/* <span className="mdi mdi-set-center mdi-24px lifeline-icon"></span> */}
+                             <button className="lifeline btn1" onClick={handleFiftyFifty}>50/50</button>
                          </p>
                          <p className="p-right">
-                             <span className="mdi mdi-lightbulb-on-outline mdi-24px lifeline-icon"></span><span className="lifeline">Try {numTry}</span>
+                             {/* <span className="mdi mdi-lightbulb-on-outline mdi-24px lifeline-icon"></span> */}
+                             <span className="lifeline">Attempts Remaining : {numTry}</span>
                          </p>
                      </div>
                          <div className="counte-question">
 
 
                            <p>
-                             <span className="left" >Question {questionNum} /10</span>
+                             <span className="left" >Question {questionNum} /11</span>
                            </p>
                            <p>
                              <span className="left" >Score {score}</span>
@@ -161,12 +167,12 @@ const Play = () => {
                          <h5>{ question && question.question}</h5>
                     
                              <div className="options-conatiner">
-                               <p className="option" onClick={()=>{ handleClick(question.correctAnswer,question._id) }}>{ question && question.correctAnswer}</p>
-                                 <p className="option" onClick={()=>{ handleClick(question.incorrectAnswer1,question._id) }}>{ question && question.incorrectAnswer1}</p>
+                               <Link className="option" onClick={()=>{ handleClick(question.correctAnswer,question._id) }}>{ question && question.correctAnswer}</Link>
+                                 <Link className="option" onClick={()=>{ handleClick(question.incorrectAnswer1,question._id) }}>{ question && question.incorrectAnswer1}</Link>
                              </div>
-                             <div className="options-conatiner">
-                                 <p className="option" onClick={()=>{ handleClick(question.incorrectAnswer2,question._id) }} >{ question && question.incorrectAnswer2}</p>
-                                 <p className="option" onClick={()=>{ handleClick(question.incorrectAnswer3,question._id) }} >{ question && question.incorrectAnswer3}</p>
+                             <div className="options-conatiner1">
+                                 <Link className="option" onClick={()=>{ handleClick(question.incorrectAnswer2,question._id) }} >{ question && question.incorrectAnswer2}</Link>
+                                 <Link className="option" onClick={()=>{ handleClick(question.incorrectAnswer3,question._id) }} >{ question && question.incorrectAnswer3}</Link>
                              </div>
 
                           </div>

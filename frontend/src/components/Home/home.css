@@ -27,12 +27,12 @@
 }
 
 h2 {
-    color: #fff;
+   
+    color: gold;
     text-align: center;
-    font-size: 60px;
+    font-size: 80px;
     font-weight: 600;
-
-    padding-bottom: 7%;
+    padding-bottom: 3%;
 
 }
 h3 {
@@ -41,6 +41,13 @@ h3 {
     font-size: 40px;
     font-weight: 600;
     margin-top: 5%;
+}
+h4{
+  
+    color: gold;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
 }
 .questions{
     background: linear-gradient(to bottom, rgb(135 187 170 / 0%) 0%, rgb(95 195 163) 100%);
@@ -66,8 +73,23 @@ h3 {
 .lifeline {
     position: relative;
     top: -4px;
-  
+
+
+} 
+.btn1{
+    border-radius: 9px;
+    text-align: center;
+    /* line-height: 3; */
+    background: linear-gradient(to bottom, rgb(255 118 0) 0%, rgb(255 118 0 / 23%) 100%);
+    color: white;
+    /* font-weight: 600; */
+    width: 75px;
+    height: 33px;
+    border: none;
+    outline: none;
+
 }
+
 .counte-question{
     text-align: center;
 }
@@ -83,13 +105,14 @@ h5{
     margin-top: 6%;
     margin-bottom: 8%;
 }
-.options-conatiner{
+.options-conatiner,.options-conatiner1{
     display: flex;
     margin-top: 3%;
     width: 500px;
     margin-left: 13%;
  
 }
+
 .option{
     flex: auto; 
     border-radius: 30px;

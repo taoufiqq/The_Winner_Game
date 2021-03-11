@@ -16,7 +16,7 @@ const Home = () => (
                 <div style={{textAlign: 'center'}}>
                     <span className="mdi mdi-cube-outline cube"></span>
                 </div>
-                    <h2>You are <strong>The Winner</strong></h2>
+                    <h2>Start <strong>Game</strong></h2>
                 <form>
                     <Link to="/register" className="play-button" style={{marginLeft: '34%',marginTop: '25%'}}>Start</Link>
                 </form>           

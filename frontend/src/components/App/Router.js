@@ -16,6 +16,7 @@ import EditQuestion from '../Dashboard/EditQuestion';
 import AdminLogin from '../Dashboard/AdminLogin';
 import Play from '../Home/Play';
 import Winner from '../Home/Winner';
+import Loser from '../Home/Loser';
 import PrivateRoute from '../auth/PrivateRoute';
 function Routes() {
 
@@ -38,6 +39,7 @@ function Routes() {
           <Route  path="/admin" exact component={AdminLogin}/>
           <PrivateRoute  path="/play" exact component={Play}/>
           <PrivateRoute  path="/winner" exact component={Winner}/>
+          <PrivateRoute  path="/lose" exact component={Loser}/>
       </Switch>
 </BrowserRouter>
 

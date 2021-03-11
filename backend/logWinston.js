@@ -20,11 +20,11 @@ const logWinston = winston.createLogger({
             filename: 'sysLog.log', 
             format : winston.format.combine(winston.format.timestamp(),winston.format.json())
         }),
-        new winston.transports.MongoDB(
-          { 
-               db :'mongodb://localhost:27017/theWinner',
-               option : { useUnifiedTopology: true } 
-          }),
+   new winston.transports.MongoDB(
+        { 
+            db :'mongodb://localhost:27017/theWinner',
+            option : { useUnifiedTopology: true } 
+        }),
   ],
 });
 

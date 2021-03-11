@@ -88,7 +88,6 @@ if(admin){
 
 router.get('/logout', (req, res) => {
     const deconnect = res.clearCookie("token")
-
     res.json({
         message: 'User is Signout !!'
     })

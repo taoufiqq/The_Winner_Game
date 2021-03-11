@@ -5,14 +5,7 @@ const router = express.Router();
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcrypt');
 
-// --------------------show all Users -----------------
 
-router.get('/', (req, res) => {
-    User.find()
-      .then((user) => res.json(user))
-      .catch((err) => res.status(400).json("Error :" + err));
-  });
-  
   
   //------------------------User authentication---------------------
   
@@ -92,111 +85,166 @@ if(user){
 }).catch((err) => res.status(400).json("Error :" + err));
 
 })
+//------------------remove token ----------------------
+router.get('/logout', (req, res) => {
+  const deconnect = res.clearCookie("token")
 
+  res.json({
+      message: 'User is Signout !!'
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------show all Users -----------------
+
+// router.get('/', (req, res) => {
+//   User.find()
+//     .then((user) => res.json(user))
+//     .catch((err) => res.status(400).json("Error :" + err));
+// });
 
 //------------------update User----------------------
-  router.route("/update/:id").put((req, res) => {
+  // router.route("/update/:id").put((req, res) => {
 
-    bcrypt.hash(req.body.password, 10, function(err, hashPassword) {
+  //   bcrypt.hash(req.body.password, 10, function(err, hashPassword) {
 
-        if (err) {
-          res.json({error : err})
+  //       if (err) {
+  //         res.json({error : err})
           
-        }
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const userName = req.body.userName;
-    const email = req.body.email;
-    const password = req.body.password;
+  //       }
+  //   const firstName = req.body.firstName;
+  //   const lastName = req.body.lastName;
+  //   const userName = req.body.userName;
+  //   const email = req.body.email;
+  //   const password = req.body.password;
   
   
     // Validate Request
-    if(!firstName || !lastName || !userName || !email || !password) {
-      return res.status(400).send({
-          message: "filde content can not be empty"
-      });
-  }
+  //   if(!firstName || !lastName || !userName || !email || !password) {
+  //     return res.status(400).send({
+  //         message: "filde content can not be empty"
+  //     });
+  // }
   
       // Find  and update it with the request body
   
-      User.findByIdAndUpdate(req.params.id,{
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        userName: req.body.userName,
-        email: req.body.email,
-        password: hashPassword,
+//       User.findByIdAndUpdate(req.params.id,{
+//         firstName: req.body.firstName,
+//         lastName: req.body.lastName,
+//         userName: req.body.userName,
+//         email: req.body.email,
+//         password: hashPassword,
   
-      },{new: true})
+//       },{new: true})
   
-      .then(User => {
-        if(!User) {
+//       .then(User => {
+//         if(!User) {
   
-          return res.status(404).send({
-            message: "User not found with id " + req.params._id
-        });
+//           return res.status(404).send({
+//             message: "User not found with id " + req.params._id
+//         });
   
-        }
-        res.send(User);
-      }).catch(err => {
+//         }
+//         res.send(User);
+//       }).catch(err => {
   
-        if(err.kind === 'ObjectId') {
-          return res.status(404).send({
-              message: "User not found with id " + req.params.id
-          });                
-      }
-      return res.status(500).send({
-          message: "Error updating User with id " + req.params.id
-      });
+//         if(err.kind === 'ObjectId') {
+//           return res.status(404).send({
+//               message: "User not found with id " + req.params.id
+//           });                
+//       }
+//       return res.status(500).send({
+//           message: "Error updating User with id " + req.params.id
+//       });
   
-      })
+//       })
   
   
-  })
-})
+//   })
+// })
   
   
   
 //------------------delete User----------------------
-  router.route("/delete/:id").delete((req, res) => {
+  // router.route("/delete/:id").delete((req, res) => {
 
-    User.findByIdAndRemove(req.params.id)
-    .then(User=> {
-      if (!User) {
+  //   User.findByIdAndRemove(req.params.id)
+  //   .then(User=> {
+  //     if (!User) {
     
-        return res.status(404).send({
-          message : "User not found with id " + req.params.id
-        });
+  //       return res.status(404).send({
+  //         message : "User not found with id " + req.params.id
+  //       });
         
-      }
-      res.send({
-        message : "User deleted successfully !" });
-    }).catch(err =>{
-      if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+  //     }
+  //     res.send({
+  //       message : "User deleted successfully !" });
+  //   }).catch(err =>{
+  //     if (err.kind === 'ObjectId' || err.name === 'NotFound') {
     
-        return res.status(404).send({
-          message : 'User not found with id ' + req.params.id
-        });
+  //       return res.status(404).send({
+  //         message : 'User not found with id ' + req.params.id
+  //       });
         
-      }
-      return res.status(404).send({
-        message : 'Could not delete note with id ' + req.params.id
-      });
-    })
+  //     }
+  //     return res.status(404).send({
+  //       message : 'Could not delete note with id ' + req.params.id
+  //     });
+  //   })
         
     
     
     
       
      
-    })
+  //   })
     
-    router.get('/logout', (req, res) => {
-      const deconnect = res.clearCookie("token")
-  
-      res.json({
-          message: 'User is Signout !!'
-      })
-  })
+
 
 
 
